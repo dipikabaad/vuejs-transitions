@@ -1,7 +1,7 @@
 <template>
   <div style="margin-top: 200px">
     <button class="btn btn-primary" @click="show= !show">Toggle</button>
-    <transition name="fade">
+    <transition name="fade" mode="out-in">
     <p v-if="show" key="lorem-ipsum">Lorem ipsum dolar sit amet</p>
     <p v-else key="nohting-around-here">Nothing to see here</p>
     </transition>
