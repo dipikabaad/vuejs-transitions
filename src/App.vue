@@ -3,7 +3,8 @@
     <button class="btn btn-primary" @click="show= !show">Toggle</button>
     <transition
     @before-enter="beforeEnter"
-    @enter="enter">
+    @enter="enter"
+    :css="false">
     <p v-if="show">Lorem ipsum dolar sit amet</p>
     </transition>
   </div>
