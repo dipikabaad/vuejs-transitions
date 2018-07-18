@@ -1,7 +1,7 @@
 <template>
   <div style="margin-top: 200px">
     <button class="btn btn-primary" @click="show= !show">Toggle</button>
-    <transition>
+    <transition name="fade">
     <p v-if="show">Lorem ipsum dolar sit amet</p>
     </transition>
   </div>
@@ -19,10 +19,10 @@ export default {
 </script>
 
 <style>
-  .v-enter, .v-leave-to{
+  .fade-enter, .fade-leave-to{
     opacity: 0;
   }
-  .v-enter-active, .v-leave-active{
+  .fade-enter-active, .fade-leave-active{
     transition: opacity 5s; 
   }
  
