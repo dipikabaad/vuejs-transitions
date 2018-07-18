@@ -4,7 +4,7 @@
     <transition name="fade">
     <p v-if="show" style="width: 200px;">Lorem ipsum dolar sit amet</p>
     </transition>
-    <transition name="pulse-fade">
+    <transition name="pulse-fade" type="animation">
     <p v-if="show" style="width: 200px;">Lorem ipsum dolar sit amet</p>
     </transition>
   </div>
@@ -36,7 +36,7 @@ export default {
     opacity: 1;
   }
   .pulse-fade-leave-active{
-    transition: opacity 1s;
+    transition: opacity 4s;
     animation: pulse 1s;
   }
 
