@@ -1,40 +1,45 @@
 <template>
   <div style="margin-top: 200px">
-    <button class="btn btn-primary" @click="show= !show">Toggle</button>
-    <transition
-    @before-enter="beforeEnter"
-    @enter="enter"
-    :css="false">
-    <p v-if="show">Lorem ipsum dolar sit amet</p>
+    <button class="btn btn-primary" @click="changeShape">Switch Shapes</button>
+    <br><br>
+    <transition name="fade" mode="out-in" appear>
+    <component :is="shape"></component>
     </transition>
   </div>
 </template>
 
 <script>
+import Square from './Square.vue';
+import Circle  from './Circle.vue';
 export default {
   data(){
     return {
-      show: false
+      shape: 'appSquare'
     };
   },
-  methods:{
-    beforeEnter(el){
-      el.style.opacity = 0;
-    },
-    enter(el, done){
-      let opacity = 0;
-      const interval = setInterval(() => {
-          opacity += 0.1;
-          el.style.opacity = opacity;
-          if (opacity > 0.9) {
-            clearInterval(interval);
-            done();
-          }
-      }, 100);
+ methods:{
+  changeShape(){
+    if(this.shape == 'appSquare'){
+      this.shape = 'appCircle'
+    } else {
+      this.shape = 'appSquare'
     }
   }
-  
+ },
+ components: {
+  appSquare : Square,
+  appCircle: Circle
+ }
 }
 </script>
+
+<style>
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 1s ease;
+  }
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+</style>
 
 
