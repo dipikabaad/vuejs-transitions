@@ -1,11 +1,10 @@
 <template>
   <div style="margin-top: 200px">
     <button class="btn btn-primary" @click="show= !show">Toggle</button>
-    <transition name="fade" appear
-    appear-class=""
-      appear-active-class=""
-      appear-to-class="">
-    <p v-if="show" key="lorem-ipsum">Lorem ipsum dolar sit amet</p>
+    <transition
+    @before-enter="beforeEnter"
+    @enter="enter">
+    <p v-if="show">Lorem ipsum dolar sit amet</p>
     </transition>
   </div>
 </template>
@@ -14,18 +13,27 @@
 export default {
   data(){
     return {
-      show: true
+      show: false
     };
+  },
+  methods:{
+    beforeEnter(el){
+      el.style.opacity = 0;
+    },
+    enter(el, done){
+      let opacity = 0;
+      const interval = setInterval(() => {
+          opacity += 0.1;
+          el.style.opacity = opacity;
+          if (opacity > 0.9) {
+            clearInterval(interval);
+            done();
+          }
+      }, 100);
+    }
   }
   
 }
 </script>
-<style>
- .fade-enter, fade-leave-to {
-    opacity: 0
- }
- .fade-enter-active, .fade-leave-active {
-  transition: opacity 1s;
- }
-</style>
+
 
