@@ -2,6 +2,7 @@
   <div style="margin-top: 200px">
     <button class="btn btn-primary" @click="addRandom">Add Random Number</button>&nbsp;
     <button class="btn btn-primary" @click="removeRandom">Remove Random Number</button>
+    <button class="btn btn-primary" @click="shuffle">Shuffle Numbers</button>
     <br><br>
     <transition-group name="fade">
     <span class="list-item" v-for="n in numbers" :key="n">{{n}}</span>
@@ -27,6 +28,9 @@ export default {
    },
    removeRandom(){
     this.numbers.splice(this.getRandomIndex(),1)
+   },
+   shuffle(){
+    this.numbers = _.shuffle(this.numbers);
    }
  }
 }
@@ -37,14 +41,23 @@ export default {
     display: inline-block;
     margin-right: 10px;
   }
+  
   .fade-enter-active, .fade-leave-active {
     transition: all 1s;
   }
+  
   .fade-enter, .fade-leave-to {
     opacity: 0;
     transition: rotate(45deg) translate(-32px);
   }
+  
+  .fade-move {
+    transition: transform 1s;
+  }
 
+  .fade-leave-active {
+    position: absolute;
+  }
 </style>
 
 
