@@ -1,7 +1,10 @@
 <template>
   <div style="margin-top: 200px">
     <button class="btn btn-primary" @click="show= !show">Toggle</button>
-    <transition >
+    <transition name="fade">
+    <p v-if="show" style="width: 200px;">Lorem ipsum dolar sit amet</p>
+    </transition>
+    <transition name="pulse-fade">
     <p v-if="show" style="width: 200px;">Lorem ipsum dolar sit amet</p>
     </transition>
   </div>
@@ -18,32 +21,34 @@ export default {
 }
 </script>
 <style>
-  .v-enter-active{
-      animation: pulse 1s;
+  .fade-enter, fade-leave-to, pulse-fade-enter, pulse-fade-leave-to{
+    opacity: 0;
   }
-  .v-leave-active{
-    animation: fade-out 1s;
+  .fade-enter-active, fade-leave-active {
+    transition: opacity 1s;
   }
-  @keyframe fade-out {
-      from {opacity: 1;
-      transition: opacity;
-      }
-      to {
-      opacity: 0;
-      }
+
+  .pulse-fade-enter-active{
+    transition: opacity .5s;
+    animation: pulse 1s;
   }
+  .pulse-fade-leave{
+    opacity: 1;
+  }
+  .pulse-fade-leave-active{
+    transition: opacity 1s;
+    animation: pulse 1s;
+  }
+
   @keyframe pulse{
     from {
-        transform: scaled(1,1,1);
+      transform: scaled(1,1,1);
     }
-
     50% {
-      tranform: scaled(1.2,1.2,1.2);
+      transform: scaled(1.2,1.2,1.2);
     }
-
     to {
       transform: scaled(1,1,1);
-
     }
   }
 </style>
