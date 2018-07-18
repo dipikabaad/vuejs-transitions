@@ -1,9 +1,7 @@
 <template>
   <div style="margin-top: 200px">
     <button class="btn btn-primary" @click="show= !show">Toggle</button>
-    <transition  enter-active-class="animated pulse slow"
-    leave-active-class="animated zoomOut"
-    >
+    <transition >
     <p v-if="show" style="width: 200px;">Lorem ipsum dolar sit amet</p>
     </transition>
   </div>
@@ -19,11 +17,34 @@ export default {
   
 }
 </script>
-
 <style>
-  .slow{
-  animation-duration: 5s;
+  .v-enter-active{
+      animation: pulse 1s;
+  }
+  .v-leave-active{
+    animation: fade-out 1s;
+  }
+  @keyframe fade-out {
+      from {opacity: 1;
+      transition: opacity;
+      }
+      to {
+      opacity: 0;
+      }
+  }
+  @keyframe pulse{
+    from {
+        transform: scaled(1,1,1);
+    }
+
+    50% {
+      tranform: scaled(1.2,1.2,1.2);
+    }
+
+    to {
+      transform: scaled(1,1,1);
+
+    }
   }
 </style>
-
 
